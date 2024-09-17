@@ -8,6 +8,14 @@ import Image2 from "@/public/images/slider-pic-2.png";
 import Image3 from "@/public/images/slider-pic-3.png";
 import Autoplay from "embla-carousel-autoplay";
 import AutoScroll from "embla-carousel-auto-scroll";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export function HomepageCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
@@ -21,7 +29,9 @@ export function HomepageCarousel() {
       <div className="embla__container">
         {images.map((index) => (
           <div className="embla__slide" key={index}>
-            <Image src={index} />
+            <Card>
+              <Image src={index} />
+            </Card>
           </div>
         ))}
       </div>
