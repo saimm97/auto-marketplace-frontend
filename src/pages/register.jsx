@@ -39,20 +39,25 @@ export default function Register() {
         className="mr-6 hidden lg:flex justify-center mt-14"
         prefetch={false}
       >
-        <Image src={Logo} height={40} width={180}  alt="Image not loaded" />
+        <Image src={Logo} height={40} width={180} alt="Image not loaded" />
       </Link>
       <div className="flex justify-center md:mt-12 lg:mt-12">
-      <form onSubmit={handleSubmit}>
-        <Card className="w-[350px]">
-          <CardHeader>
-            <CardTitle>Register</CardTitle>
-            <CardDescription>Complete your Registration</CardDescription>
-          </CardHeader>
-          <CardContent>
+        <form onSubmit={handleSubmit}>
+          <Card className="w-[350px]">
+            <CardHeader>
+              <CardTitle>Register</CardTitle>
+              <CardDescription>Complete your Registration</CardDescription>
+            </CardHeader>
+            <CardContent>
               <div className="grid w-full items-center gap-4">
                 <div className="flex flex-col space-y-1.5">
                   <Label htmlFor="name">Username</Label>
-                  <Input id="name" placeholder="username" value={values.name} onChange={handleChange} />
+                  <Input
+                    id="name"
+                    placeholder="Username"
+                    value={values.name}
+                    onChange={handleChange}
+                  />
                   {errors.name && (
                     <div className="text-red-600 text-sm">{errors.name}</div>
                   )}
@@ -81,7 +86,9 @@ export default function Register() {
                     onChange={handleChange}
                   />
                   {errors.password && (
-                    <div className="text-red-600 text-sm">{errors.password}</div>
+                    <div className="text-red-600 text-sm">
+                      {errors.password}
+                    </div>
                   )}
                 </div>
                 <div className="flex flex-col space-y-1.5">
@@ -94,16 +101,18 @@ export default function Register() {
                     onChange={handleChange}
                   />
                   {errors.confirmPassword && (
-                    <div className="text-red-600 text-sm">{errors.confirmPassword}</div>
+                    <div className="text-red-600 text-sm">
+                      {errors.confirmPassword}
+                    </div>
                   )}
                 </div>
               </div>
-          </CardContent>
-          <CardFooter className="flex justify-between">
-            <Button variant="outline">Cancel</Button>
-            <Button type='submit'> Register </Button>
-          </CardFooter>
-        </Card>
+            </CardContent>
+            <CardFooter className="flex justify-between">
+              <Button variant="outline">Cancel</Button>
+              <Button type="submit"> Register </Button>
+            </CardFooter>
+          </Card>
         </form>
       </div>
     </div>
