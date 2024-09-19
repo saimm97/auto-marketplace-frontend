@@ -1,0 +1,23 @@
+.embla {
+    overflow: hidden;
+  }
+  .embla__container {
+    display: flex;
+  }
+
+  .embla__slide {
+    /* flex: 0 0 90%; */
+    min-width: 48%;
+    /* height: 30%; */
+    background: transparent;
+    /* height: 46%; */
+  }
+
+  .embla__slide_1 {
+    /* flex: 0 0 90%; */
+    min-width: 18%;
+    /* max-height: 30%; */
+    /* height: 30%; */
+    /* margin-top: 8rem; */
+    /* height: 46%; */
+  }
