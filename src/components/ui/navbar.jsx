@@ -53,10 +53,7 @@ export function Navbar() {
         </SheetContent>
       </Sheet>
       <Link href="#" className="mr-6 hidden lg:flex" prefetch={false}>
-        {/* <MountainIcon className="h-6 w-6" /> */}
-
           <Image src={Logo} height={40} width={180} />
-        {/* <span className="sr-only">Wheel Ventures</span> */}
       </Link>
       <nav className="ml-auto hidden lg:flex gap-6">
         <Link
