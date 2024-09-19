@@ -25,7 +25,7 @@ export function HomepageCarousel() {
   const [images] = useState([Image1, Image2, Image3]);
 
   return (
-    <div className="embla" ref={emblaRef}>
+    <div className="embla mt-3" ref={emblaRef}>
       <div className="embla__container">
         {images.map((index) => (
           <div className="embla__slide" key={index}>
