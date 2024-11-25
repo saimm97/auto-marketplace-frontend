@@ -13,7 +13,6 @@ import Brand7 from "@/public/images/brands/suzuki-logo.png";
 import Brand8 from "@/public/images/brands/toyota-logo.png";
 import Brand9 from "@/public/images/brands/MGlogo2.png"
 import Brand10 from "@/public/images/brands/kialogo2.png"
-
 import Autoplay from "embla-carousel-autoplay";
 import {
   Card,
@@ -45,14 +44,14 @@ export function BrandsCarousel() {
         {images.map((index) => (
           <div>
             <Link href="*">
-              <div>
-                <Card className="w-[75%] h-70 ">
-                  <CardContent className='text-center mt-7'>
-                    <Image src={index} />
-                    <Link href="*" > <b> Available (3)</b> </Link>
-                  </CardContent>
-                </Card>
-              </div>
+            <div>
+              <Card className="w-[75%] h-70 ">
+                <CardContent className='text-center mt-7'>
+                  <Image src={index} />
+                  <Link href="*" > <b> Available (3)</b> </Link>
+                </CardContent>
+              </Card>
+            </div>
             </Link>
           </div>
         ))}
