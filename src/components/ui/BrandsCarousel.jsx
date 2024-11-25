@@ -41,18 +41,20 @@ export function BrandsCarousel() {
   return (
     <div className="mt-8 items-center pr-8">
       <div class="grid gap-y-4 grid-cols-5 px-64 items-center">
-        {images.map((item,index) => (
+
+        {console.log(images)}
+        {images.map((item) => (
           <div>
-            <Link href="*">
-            <div>
-              <Card className="w-[75%] h-70 ">
-                <CardContent className='text-center mt-7'>
-                  <Image src={item} alt="Image not found " />
-                  <Link href="*" > <b> Available (3)</b> </Link>
-                </CardContent>
-              </Card>
-            </div>
-            </Link>
+            {/* <Link href="*"> */}
+              <div>
+                <Card className="w-[75%] h-70 ">
+                  <CardContent className='text-center mt-7'>
+                    <Image src={item.src} width={200} height={200} alt="Image not found " />
+                    <Link href="*" > <b> Available (3)</b> </Link>
+                  </CardContent>
+                </Card>
+              </div>
+            {/* </Link> */}
           </div>
         ))}
       </div>
