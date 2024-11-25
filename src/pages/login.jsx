@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import Image from "next/image";
-import { userSignInSchema } from "@/lib/schema.js";
+import  userSignInSchema from "@/lib/schema.js";
 import { useFormik } from "formik";
 import axios from "axios";
 
