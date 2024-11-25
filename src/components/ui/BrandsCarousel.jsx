@@ -41,13 +41,13 @@ export function BrandsCarousel() {
   return (
     <div className="mt-8 items-center pr-8">
       <div class="grid gap-y-4 grid-cols-5 px-64 items-center">
-        {images.map((key) => (
+        {images.map((item,index) => (
           <div>
             <Link href="*">
             <div>
               <Card className="w-[75%] h-70 ">
                 <CardContent className='text-center mt-7'>
-                  <Image src={key} />
+                  <Image src={item} alt="Image not found " />
                   <Link href="*" > <b> Available (3)</b> </Link>
                 </CardContent>
               </Card>
