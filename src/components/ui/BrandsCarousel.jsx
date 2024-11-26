@@ -11,16 +11,14 @@ import Brand5 from "@/public/images/brands/mercedes-logo.webp";
 import Brand6 from "@/public/images/brands/nissan-logo.png";
 import Brand7 from "@/public/images/brands/suzuki-logo.png";
 import Brand8 from "@/public/images/brands/toyota-logo.png";
+import Brand9 from "@/public/images/brands/MGlogo2.png"
+import Brand10 from "@/public/images/brands/kialogo2.png"
 import Autoplay from "embla-carousel-autoplay";
-import AutoScroll from "embla-carousel-auto-scroll";
 import {
   Card,
   CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
 } from "@/components/ui/card";
+import Link from "next/link";
 
 export function BrandsCarousel() {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
@@ -36,18 +34,27 @@ export function BrandsCarousel() {
     Brand6,
     Brand7,
     Brand8,
+    Brand9,
+    Brand10
   ]);
 
   return (
-    <div className="embla mt-8" ref={emblaRef}>
-      <div className="embla__container">
-        {images.map((index) => (
-          <div className="embla__slide_1" key={index}>
-            <Card className="w-[100%] h-64">
-              <CardContent className='text-center mt-7'>
-                <Image src={index} />
-              </CardContent>
-            </Card>
+    <div className="mt-8 items-center pr-8">
+      <div class="grid gap-y-4 grid-cols-5 px-64 items-center">
+
+        {console.log(images)}
+        {images.map((item) => (
+          <div>
+            {/* <Link href="*"> */}
+              <div>
+                <Card className="w-[75%] h-70 ">
+                  <CardContent className='text-center mt-7'>
+                    <Image src={item.src} width={200} height={200} alt="Image not found " />
+                    <Link href="*" > <b> Available (3)</b> </Link>
+                  </CardContent>
+                </Card>
+              </div>
+            {/* </Link> */}
           </div>
         ))}
       </div>

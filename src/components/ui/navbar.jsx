@@ -6,12 +6,12 @@
 import { Sheet, SheetTrigger, SheetContent } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Logo from "@/public/images/wheel_ventures_logo.png";
+import Logo from "@/public/images/removebg.png";
 import Image from "next/image";
 
 export function Navbar() {
   return (
-    <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6 mt-2">
+    <header className="flex h-20 w-full shrink-0 items-center px-4 md:px-6">
       <Sheet>
         <SheetTrigger asChild>
           <Button size="icon" className="lg:hidden">
@@ -56,8 +56,8 @@ export function Navbar() {
           </div>
         </SheetContent>
       </Sheet>
-      <Link href="/" className="mr-6 hidden lg:flex" prefetch={false}>
-        <Image src={Logo} height={40} width={180} />
+      <Link href="/" className="mr-6 hidden lg:flex mt-3" prefetch={false}>
+        <Image src={Logo} height={70} width={180} />
       </Link>
       <nav className="ml-auto hidden lg:flex gap-6">
         <Link
@@ -89,7 +89,9 @@ export function Navbar() {
           Contact
         </Link>
 
-        <Button>Login</Button>
+        <Button>
+          <Link href="/login">Login</Link>
+        </Button>
 
         <Button>
           <Link href="/register">Register</Link>

@@ -15,11 +15,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import Image from "next/image";
-import userSchema from "@/lib/schema.js";
+import  userSignInSchema from "@/lib/schema.js";
 import { useFormik } from "formik";
 import axios from "axios";
 
-export default function Register() {
+export default function Login() {
 
   const axiosInstance = axios.create({
     baseURL: 'http://127.0.0.1:3001/',
@@ -32,21 +32,18 @@ export default function Register() {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
       email: '',
       password: '',
-      confirmPassword: ''
     },
-    validationSchema: userSchema,
+    validationSchema: userSignInSchema,
     onSubmit: values => {
       console.log(values);
-      axiosInstance.post('http://127.0.0.1:3001/signup', { user: values })
+      axiosInstance.post('http://127.0.0.1:3001/login', { user: values })
         .then(res => {
           console.log(res);
           console.log(res.data);
           window.location = "/"
         })
-
         .catch((error) => {
           console.log("Something went wrong" + error.message)
         })
@@ -66,27 +63,10 @@ export default function Register() {
         <form onSubmit={formik.handleSubmit}>
           <Card className="w-[350px]">
             <CardHeader>
-              <CardTitle>Register</CardTitle>
-              <CardDescription>Complete your Registration</CardDescription>
+              <CardDescription>Please Login to Conitnue</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="grid w-full items-center gap-4">
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Username</Label>
-                  <Input
-                    id="name"
-                    placeholder="Username"
-                    name="name"
-                    type="text"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.name}
-                  />
-                  {formik.errors.name && (
-                    <div className="text-red-600 text-sm">{formik.errors.name}</div>
-                  )}
-                </div>
-                <div className="flex flex-col space-y-1.5">
+                <div className="flex flex-col space-y-1.5 ">
                   <Label htmlFor="name">Email</Label>
                   <Input
                     type="email"
@@ -102,7 +82,7 @@ export default function Register() {
                     <div className="text-red-600 text-sm">{formik.errors.email}</div>
                   )}
                 </div>
-                <div className="flex flex-col space-y-1.5">
+                <div className="flex flex-col space-y-1.5 mt-7">
                   <Label htmlFor="name">Password</Label>
                   <Input
                     type="password"
@@ -118,29 +98,11 @@ export default function Register() {
                       {formik.errors.password}
                     </div>
                   )}
-                </div>
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Confirm Password</Label>
-                  <Input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.confirmPassword}
-                  />
-                  {formik.errors.confirmPassword && (
-                    <div className="text-red-600 text-sm">
-                      {formik.errors.confirmPassword}
-                    </div>
-                  )}
-                </div>
-              </div>
+                </div>              
             </CardContent>
             <CardFooter className="flex justify-between">
               <Button variant="outline">Cancel</Button>
-              <Button type="submit"> Register </Button>
+              <Button type="submit"> Login </Button>
             </CardFooter>
           </Card>
         </form>
