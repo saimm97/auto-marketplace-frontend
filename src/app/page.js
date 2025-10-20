@@ -2,9 +2,11 @@ import { Navbar } from "@/components/ui/navbar";
 import { HomepageCarousel } from "@/components/ui/HomepageCarousel";
 import './globals.css'
 import { SearchCar } from "@/components/ui/SearchCar";
+import { SessionProvider } from "next-auth/react"
 
 
-export default function Home() {
+export default function Home() 
+{
   return (
     <div>
       <div className="backgroundImage">

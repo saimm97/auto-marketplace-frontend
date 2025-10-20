@@ -18,6 +18,9 @@ import Image from "next/image";
 import userSchema from "@/lib/schema.js";
 import { useFormik } from "formik";
 import axios from "axios";
+import GoogleLogo from '@/public/js/google_logo.jsx';
+import { handleSignIn, handleSignOut } from '../lib/auth';
+
 
 export default function Register() {
 
@@ -62,85 +65,99 @@ export default function Register() {
       >
         <Image src={Logo} height={40} width={180} alt="Image not loaded" />
       </Link>
-      <div className="flex justify-center md:mt-12 lg:mt-12">
+      <div className="flex justify-center md:mt-12 lg:mt-11">
         <form onSubmit={formik.handleSubmit}>
-          <Card className="w-[350px]">
-            <CardHeader>
-              <CardTitle>Register</CardTitle>
-              <CardDescription>Complete your Registration</CardDescription>
+          <Card className="w-[350px] sm:w-[400px] md:w-[450px] lg:w-[500px] min-h-[500px] sm:min-h-[550px] md:min-h-[600px] mb-4">
+            <CardHeader className="pb-0">
+              <CardTitle className="text-center text-xl">Register</CardTitle>
+              <CardDescription className="text-center text-lg">Complete your Registration</CardDescription>
             </CardHeader>
-            <CardContent>
-              <div className="grid w-full items-center gap-4">
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Username</Label>
-                  <Input
-                    id="name"
-                    placeholder="Username"
-                    name="name"
-                    type="text"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.name}
-                  />
-                  {formik.errors.name && (
-                    <div className="text-red-600 text-sm">{formik.errors.name}</div>
-                  )}
-                </div>
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Email</Label>
-                  <Input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Email"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.email}
-                  />
+            <CardContent className="space-y-6 flex-1">
+              <div className="flex flex-col space-y-2">
+                <Label htmlFor="name" className="text-base font-medium">Username</Label>
+                <Input
+                  id="name"
+                  placeholder="Enter your username"
+                  name="name"
+                  type="text"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.name}
+                  className="h-12 text-base"
+                />
+                {formik.errors.name && (
+                  <div className="text-red-600 text-sm mt-1">{formik.errors.name}</div>
+                )}
+              </div>
+              <div className="flex flex-col space-y-2">
+                <Label htmlFor="email" className="text-base font-medium">Email</Label>
+                <Input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.email}
+                  className="h-12 text-base"
+                />
 
-                  {formik.errors.email && (
-                    <div className="text-red-600 text-sm">{formik.errors.email}</div>
-                  )}
-                </div>
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Password</Label>
-                  <Input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.password}
-                  />
-                  {formik.errors.password && (
-                    <div className="text-red-600 text-sm">
-                      {formik.errors.password}
-                    </div>
-                  )}
-                </div>
-                <div className="flex flex-col space-y-1.5">
-                  <Label htmlFor="name">Confirm Password</Label>
-                  <Input
-                    type="password"
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    placeholder="Confirm Password"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={formik.values.confirmPassword}
-                  />
-                  {formik.errors.confirmPassword && (
-                    <div className="text-red-600 text-sm">
-                      {formik.errors.confirmPassword}
-                    </div>
-                  )}
-                </div>
+                {formik.errors.email && (
+                  <div className="text-red-600 text-sm mt-1">{formik.errors.email}</div>
+                )}
+              </div>
+              <div className="flex flex-col space-y-2">
+                <Label htmlFor="password" className="text-base font-medium">Password</Label>
+                <Input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.password}
+                  className="h-12 text-base"
+                />
+                {formik.errors.password && (
+                  <div className="text-red-600 text-sm mt-1">
+                    {formik.errors.password}
+                  </div>
+                )}
+              </div>
+              <div className="flex flex-col space-y-2">
+                <Label htmlFor="confirmPassword" className="text-base font-medium">Confirm Password</Label>
+                <Input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  placeholder="Confirm your password"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.confirmPassword}
+                  className="h-12 text-base"
+                />
+                {formik.errors.confirmPassword && (
+                  <div className="text-red-600 text-sm mt-1">
+                    {formik.errors.confirmPassword}
+                  </div>
+                )}
               </div>
             </CardContent>
-            <CardFooter className="flex justify-between">
-              <Button variant="outline">Cancel</Button>
-              <Button type="submit"> Register </Button>
+            <CardFooter className="flex flex-col space-y-4 pt-6">
+              <div className="flex justify-between w-full">
+                <Button variant="outline" className="flex-1 mr-2 h-12 text-base">Cancel</Button>
+                <Button type="submit" className="flex-1 ml-2 h-12 text-base">Register</Button>
+              </div>
+              <div className="w-full mt-8">
+                <Button
+                  variant="outline"
+                  onClick={handleSignIn}
+                  className="w-full h-12 text-base"
+                >
+                  <GoogleLogo />
+                  Sign In with Google
+                </Button>
+              </div>
             </CardFooter>
           </Card>
         </form>
