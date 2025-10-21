@@ -1,3 +1,4 @@
+"use client"
 import * as React from "react";
 import "../app/globals.css";
 import Logo from "@/public/images/wheel_ventures_logo.png";
@@ -16,21 +17,41 @@ import Link from "next/link";
 import Image from "next/image";
 import userSchema from "@/lib/schema.js";
 import { useFormik } from "formik";
+import axios from "axios";
 
 export default function Register() {
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      email: "",
-    },
-    validationSchema: userSchema,
-    onSubmit: async (values) => {
-      // Handle form submission (e.g., API call)
-      // await new Promise((resolve) => setTimeout(resolve, 1000));
-    },
+
+  const axiosInstance = axios.create({
+    baseURL: 'http://127.0.0.1:3001/',
+    headers: {
+      'Content-Type': 'application/json'
+    }
   });
 
-  const { errors, touched, values, handleSubmit, handleChange } = formik;
+  axiosInstance.defaults.headers.post['Content-Type'] = 'application/json';
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    },
+    validationSchema: userSchema,
+    onSubmit: values => {
+      console.log(values);
+      axiosInstance.post('http://127.0.0.1:3001/signup', { user: values })
+        .then(res => {
+          console.log(res);
+          console.log(res.data);
+          window.location = "/"
+        })
+
+        .catch((error) => {
+          console.log("Something went wrong" + error.message)
+        })
+    }
+  });
 
   return (
     <div>
@@ -42,7 +63,7 @@ export default function Register() {
         <Image src={Logo} height={40} width={180} alt="Image not loaded" />
       </Link>
       <div className="flex justify-center md:mt-12 lg:mt-12">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <Card className="w-[350px]">
             <CardHeader>
               <CardTitle>Register</CardTitle>
@@ -55,11 +76,14 @@ export default function Register() {
                   <Input
                     id="name"
                     placeholder="Username"
-                    value={values.name}
-                    onChange={handleChange}
+                    name="name"
+                    type="text"
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.name}
                   />
-                  {errors.name && (
-                    <div className="text-red-600 text-sm">{errors.name}</div>
+                  {formik.errors.name && (
+                    <div className="text-red-600 text-sm">{formik.errors.name}</div>
                   )}
                 </div>
                 <div className="flex flex-col space-y-1.5">
@@ -67,13 +91,15 @@ export default function Register() {
                   <Input
                     type="email"
                     id="email"
+                    name="email"
                     placeholder="Email"
-                    value={values.email}
-                    onChange={handleChange}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.email}
                   />
 
-                  {errors.email && (
-                    <div className="text-red-600 text-sm">{errors.email}</div>
+                  {formik.errors.email && (
+                    <div className="text-red-600 text-sm">{formik.errors.email}</div>
                   )}
                 </div>
                 <div className="flex flex-col space-y-1.5">
@@ -81,13 +107,15 @@ export default function Register() {
                   <Input
                     type="password"
                     id="password"
+                    name="password"
                     placeholder="Password"
-                    value={values.password}
-                    onChange={handleChange}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.password}
                   />
-                  {errors.password && (
+                  {formik.errors.password && (
                     <div className="text-red-600 text-sm">
-                      {errors.password}
+                      {formik.errors.password}
                     </div>
                   )}
                 </div>
@@ -96,13 +124,15 @@ export default function Register() {
                   <Input
                     type="password"
                     id="confirmPassword"
+                    name="confirmPassword"
                     placeholder="Confirm Password"
-                    value={values.confirmPassword}
-                    onChange={handleChange}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.confirmPassword}
                   />
-                  {errors.confirmPassword && (
+                  {formik.errors.confirmPassword && (
                     <div className="text-red-600 text-sm">
-                      {errors.confirmPassword}
+                      {formik.errors.confirmPassword}
                     </div>
                   )}
                 </div>
